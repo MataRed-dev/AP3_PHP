@@ -12,7 +12,7 @@
                                 <?php
                             }
                             ?>
-                            <form method="POST" action="/login">
+                            <form method="POST" action="./login">
                                 <h1 class="h3 mb-3 fw-normal text-light">Connexion</h1>
 
                                 <div class="form-floating">

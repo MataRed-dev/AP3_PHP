@@ -24,19 +24,19 @@
         if (isset($_GET['id'])) {
             echo '<a class="navbar-brand" href="javascript: history.go(-1)">← Retour</a>';
         } else {
-            echo '<a class="navbar-brand" href="/"><img class="brand" src="./public/images/logo.png"></a>';
+            echo '<a class="navbar-brand" href="./"><img class="brand" src="./public/images/logo.png"></a>';
         }
         ?>
 
         <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex flex-grow justify-content-end flex-grow p-2">
-            <a href="/about" class="btn btn-outline-light">À propos</a>
+            <a href="./about" class="btn btn-outline-light">À propos</a>
         </ul>
 
         <?php
         if (\utils\SessionHelpers::isLogin()) {
-            echo '<a href="/me" class="d-lg-inline-block ml-3 btn btn-danger">Mon compte</a>';
+            echo '<a href="./me" class="d-lg-inline-block ml-3 btn btn-danger">Mon compte</a>';
         } else {
-            echo '<a href="/login" class="d-lg-inline-block ml-3 btn btn-outline-danger">Connexion</a>';
+            echo '<a href="./login" class="d-lg-inline-block ml-3 btn btn-outline-danger">Connexion</a>';
         }
         ?>
     </div>

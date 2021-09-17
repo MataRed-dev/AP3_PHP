@@ -5,6 +5,6 @@
     </div>
     <div class="bg-dark home-bottom">
         <h3>Prêt ? 3, 2, 1…</h3>
-        <a href="/formations" class="btn btn-xlarge btn-danger mt-3">Découvrez nos formations →</a>
+        <a href="./formations" class="btn btn-xlarge btn-danger mt-3">Découvrez nos formations →</a>
     </div>
 </div>
