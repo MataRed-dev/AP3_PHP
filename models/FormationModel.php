@@ -13,7 +13,7 @@ class FormationModel extends SQL
 
     function getPublicVideos()
     {
-        $stmt = $this->pdo->query("SELECT * FROM formation where VISIBILITEPUBLIC = 1");
+        $stmt = $this->pdo->query("SELECT * FROM formation where NOW() >= DATEVISIBILITE;");
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 

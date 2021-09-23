@@ -1,9 +1,9 @@
 <?php
 
-$DB_SERVER = getenv("MVC_SERVER") ?: "localhost";
+$DB_SERVER = getenv("MVC_SERVER") ?: "phpmyadmin.ap3.local.dombtsig.local";
 $DB_DATABASE = getenv("MVC_DB") ?: "bgs-corp";
-$DB_USER = getenv("MVC_USER") ?: "root";
-$DB_PASSWORD = getenv("MVC_TOKEN") ?: "";
+$DB_USER = getenv("MVC_USER") ?: "bgs-corp-1";
+$DB_PASSWORD = getenv("MVC_TOKEN") ?: "NDkm5pBn";
 $DEBUG = getenv("MVC_DEBUG") ?: true;
 
 return array(

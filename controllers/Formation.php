@@ -14,10 +14,12 @@ use utils\SessionHelpers;
 class Formation extends Web
 {
     private $formationModel;
+    private $CompetenceModel;
 
     function __construct()
     {
         $this->formationModel = new FormationModel();
+        $this->CompetenceModel = new CompetenceModel();
     }
 
     // Affichage de la page d'accueil avec en fonction si connecté ou non une liste plus complète.
@@ -29,6 +31,14 @@ class Formation extends Web
             $formations = $this->formationModel->getVideos();
         } else {
             $formations = $this->formationModel->getPublicVideos();
+        }
+
+        $competences = [];
+        if (SessionHelpers::isLogin()) {
+            // Récupération des vidéo par le modèle
+            $competences = $this->CompetenceModel->getComp();
+        } else {
+            $competences = $this->CompetenceModel->getAllComp();
         }
 
         $this->header();
@@ -45,12 +55,12 @@ class Formation extends Web
         // Récupération de la vidéo par rapport à l'ID demandé
         $video = $this->formationModel->getByVideoId($id);
         if (!$video) {
-            $this->redirect("/formations");
+            $this->redirect("./formations");
         }
 
         // Les vidéos non public ne doivent pas être visible si non connecté
         if($video['VISIBILITEPUBLIC'] == 0 && !SessionHelpers::isLogin()){
-            $this->redirect("/formations");
+            $this->redirect("./formations");
         }
 
         // Compétence assocés à la vidéo
@@ -58,6 +68,7 @@ class Formation extends Web
 
         $this->header();
         include("./views/formation/tv.php");
+        include("./views/formation/list.php");
         $this->footer();
     }
 }

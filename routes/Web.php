@@ -4,13 +4,14 @@ namespace routes;
 
 use controllers\Account;
 use controllers\Formation;
+use controllers\Competence;
 use controllers\Main;
 use routes\base\Route;
 use utils\SessionHelpers;
 
 class Web
 {
-    function __construct()
+    function __construct() 
     {
         $main = new Main();
         $formation = new Formation();
