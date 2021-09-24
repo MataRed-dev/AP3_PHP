@@ -29,17 +29,27 @@ class Formation extends Web
         if (SessionHelpers::isLogin()) {
             // Récupération des vidéo par le modèle
             $formations = $this->formationModel->getVideos();
+            $cpt = 0;
+            foreach($formations as $formation){
+                $competenceByVideos[$cpt] = $this->formationModel->competencesFormation($formation['IDFORMATION']);
+                $cpt++;
+            }
         } else {
             $formations = $this->formationModel->getPublicVideos();
+            $cpt = 0;
+            foreach($formations as $formation){
+                $competenceByVideos[$cpt] = $this->formationModel->competencesFormation($formation['IDFORMATION']);
+                $cpt++;
+            }
         }
 
-        $competences = [];
+        $competencesA = [];
         if (SessionHelpers::isLogin()) {
-            // Récupération des vidéo par le modèle
-            $competences = $this->CompetenceModel->getComp();
+            $competencesA = $this->CompetenceModel->getComp();
         } else {
-            $competences = $this->CompetenceModel->getAllComp();
+            $competencesA = $this->CompetenceModel->getAllComp();
         }
+
 
         $this->header();
         include("./views/formation/list.php");
@@ -65,7 +75,6 @@ class Formation extends Web
 
         // Compétence assocés à la vidéo
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
-
         $this->header();
         include("./views/formation/tv.php");
         include("./views/formation/list.php");
