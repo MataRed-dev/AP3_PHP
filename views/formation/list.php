@@ -1,6 +1,6 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <div class="container">
-    <div class="BtComp">
+    <div class="BtComp" style="text-align:center"> <br>
         <button class="d-lg-inline-block ml-3 btn btn-outline-danger filter-button" data-filter="all">Voir tout</button>
         <?php
         foreach ($competences as $competence) {
@@ -15,7 +15,7 @@
         foreach ($formations as $formation) {
             ?>
 
-            <div class="col-sm-12 p-3 filter <?php foreach ($competences as $competence) { echo $competence['LIBELLECOMPETENCE']; } ?>">
+            <div class="col-sm-12 p-3 filter <?php $competences ?>">
                 <div class="card card-hover">
                     <div class="card-body d-flex">
                         <div class="p-3">
