@@ -49,4 +49,8 @@ class Account extends Web
         include("views/account/me.php");
         $this->footer();
     }
+    // Inscription utilisateur.
+    function register(){
+        
+    }
 }

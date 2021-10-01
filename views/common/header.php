@@ -37,6 +37,7 @@
             echo '<a href="./me" class="d-lg-inline-block ml-3 btn btn-danger">Mon compte</a>';
         } else {
             echo '<a href="./login" class="d-lg-inline-block ml-3 btn btn-outline-danger">Connexion</a>';
+            echo '<a href="./register" class="d-lg-inline-block ml-3 btn btn-outline-danger">S\'inscrire</a>';
         }
         ?>
     </div>
