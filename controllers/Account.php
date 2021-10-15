@@ -38,14 +38,21 @@ class Account extends Web
         // Inscription utilisateur.
         function register()
         {
-            $error = false;
+            $error = 1;
             if (isset($_POST['name']) && isset($_POST['pwd'])){
-                if ($this->accountModel->register($_POST['name'], $_POST['firstname'], $_POST['pwd'], $_POST['Cpwd'], $_POST['email'])) {
+                if ($this->accountModel->register($_POST['name'], $_POST['firstname'], $_POST['pwd'], $_POST['Cpwd'], $_POST['email']) == 1) {
                     $this->redirect("me");
                 }
-                else{
-                    $error = true;
+                elseif($this->accountModel->register($_POST['name'], $_POST['firstname'], $_POST['pwd'], $_POST['Cpwd'], $_POST['email']) == 0){
+                    $error = 0;
                 }
+                elseif($this->accountModel->register($_POST['name'], $_POST['firstname'], $_POST['pwd'], $_POST['Cpwd'], $_POST['email']) == 2){
+                    $error = 2;
+                }               
+                 elseif($this->accountModel->register($_POST['name'], $_POST['firstname'], $_POST['pwd'], $_POST['Cpwd'], $_POST['email']) == 4){
+                    $error = 4;
+                }
+                
             }
     
     

@@ -6,9 +6,23 @@
                     <div class="card-body text-center p-5">
                         <main class="form-signin">
                             <?php
-                            if (isset($error) && $error === true) {
+                            if ($error === 4) {
                                 ?>
-                                <div class="alert alert-danger">Les mots de passes ne sont pas identiques</div>
+                                <div class="alert alert-danger">Les mots de passe ne sont pas identiques</div>
+                                <?php
+                            }
+                            ?>
+                            <?php
+                            if ($error === 2) {
+                                ?>
+                                <div class="alert alert-danger">Le mot de passe n'est pas comforme. Il faut au minimum: majuscule, minuscule, numéro</div>
+                                <?php
+                            }
+                            ?>
+                            <?php
+                            if ($error === 0) {
+                                ?>
+                                <div class="alert alert-danger">Vous possédez déjà un compte, <a href="/login">Connectez vous</a></div>
                                 <?php
                             }
                             ?>

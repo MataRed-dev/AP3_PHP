@@ -77,7 +77,6 @@ class Formation extends Web
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
         $this->header();
         include("./views/formation/tv.php");
-        include("./views/formation/list.php");
         $this->footer();
     }
 }
