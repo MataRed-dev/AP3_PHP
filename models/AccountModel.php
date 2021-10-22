@@ -31,20 +31,8 @@ class AccountModel extends SQL
     {
         $uppercase = preg_match('@[A-Za-z0-9]@', $password);
 
-        $status = "";
-        $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT=? LIMIT 1");
-        $stmt->execute([$email]);
-        $inscrit = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-        if($inscrit && $inscrit["EMAILINSCRIT"] == $email){
-            return 0;
-        }
-
-        if(!$uppercase || strlen($password) < 8) {
-            return 2;
-        } 
-
-        if ($password == $passwordC && $status==""){
+        
+        if ($password == $passwordC && $uppercase && isset($password)){
             $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
             $stmt = $this->pdo->prepare("INSERT INTO inscrit VALUES (null, ? ,? ,? ,?)");
             $stmt->bindParam(1, $name);
@@ -52,14 +40,22 @@ class AccountModel extends SQL
             $stmt->bindParam(3, $email);    
             $stmt->bindParam(4, $password);
             $stmt->execute();
-            SessionHelpers::login(array("username" => "{$inscrit["NOMINSCRIT"]} {$inscrit["PRENOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"]));
 
+
+            $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT = ? LIMIT 1");
+            $stmt->execute([$mail]);
+            $inscrit = $stmt->fetch(\PDO::FETCH_ASSOC);
+            SessionHelpers::login(array("username" => "{$name} {$firstname}", "email" => $email));
             return 1;
         }
 
+        if($inscrit && $inscrit["mail"] == $email){
+            return 0;
+        }
+
+        if(!$uppercase || strlen($password) < 8) {
+            return 2;
+        } 
         return 4;
-        // -> À faire, récupération des paramètres & création du mot de passe
-        // -> Ajouter en base de données l'utilisateur.
-        // password_hash($password, PASSWORD_BCRYPT, ['cost' => 12])
     }
 }

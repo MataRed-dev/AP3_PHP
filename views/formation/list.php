@@ -1,14 +1,18 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <div class="container">
     <div class="BtComp" style="text-align: center">
-        <br><button class="d-lg-inline-block ml-3 btn btn-outline-danger filter-button" data-filter="all">Voir tout</button>
+        <br><input type="select">
+        <nom>Theme</nom>
+        <libelle>Thème de Formation</libelle>
+        <option value="all">Voir tout</option>
         <?php
         foreach ($competencesA as $competence) {
             ?>
-            <button class="d-lg-inline-block ml-3 btn btn-outline-danger filter-button" data-filter="<?= $competence['LIBELLECOMPETENCE'] ?>" ><?= $competence['LIBELLECOMPETENCE'] ?></button>
+            <option value ="<?= $competence['LIBELLECOMPETENCE'] ?>" ><?= $competence['LIBELLECOMPETENCE'] ?></option>
             <?php
         }
         ?>
+        </input>
     </div>
     <div class="row pt-5">
         <?php
@@ -64,3 +68,7 @@
 
     });
 </script>
+
+
+
+<!--data-filter="all"
