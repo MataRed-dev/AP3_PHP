@@ -49,7 +49,7 @@ class AccountModel extends SQL
             return 1;
         }
 
-        if($inscrit && $inscrit["mail"] == $email){
+        if(@$inscrit && $inscrit["mail"] == $email){
             return 0;
         }
 
