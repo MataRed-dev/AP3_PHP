@@ -19,7 +19,6 @@ class Web
 
         Route::Add('/', [$main, 'home']);
         Route::Add('/formations', [$formation, 'home']);
-        Route::Add('/tv', [$formation, 'tv']);
         Route::Add('/about', [$main, 'about']);
         Route::Add('/login', [$account, 'login']);
         Route::Add('/register', [$account, 'register']);
@@ -27,6 +26,7 @@ class Web
         if (SessionHelpers::isLogin()) {
             Route::Add('/me', [$account, 'me']);
             Route::Add('/logout', [$account, 'logout']);
+            Route::Add('/tv', [$formation, 'tv']);
         }
     }
 }
