@@ -19,10 +19,10 @@ class Web
 
         Route::Add('/', [$main, 'home']);
         Route::Add('/formations', [$formation, 'home']);
-        Route::Add('/about', [$main, 'about']);
+        Route::Add('/about', [$main, 'about']);-
         Route::Add('/login', [$account, 'login']);
         Route::Add('/register', [$account, 'register']);
-        Route::Add('/tv', [$formation, 'tv'])
+        Route::Add('/tv', [$formation, 'tv']);
 
         if (SessionHelpers::isLogin()) {
             Route::Add('/me', [$account, 'me']);
