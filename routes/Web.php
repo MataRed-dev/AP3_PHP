@@ -22,11 +22,11 @@ class Web
         Route::Add('/about', [$main, 'about']);
         Route::Add('/login', [$account, 'login']);
         Route::Add('/register', [$account, 'register']);
+        Route::Add('/tv', [$formation, 'tv'])
 
         if (SessionHelpers::isLogin()) {
             Route::Add('/me', [$account, 'me']);
-            Route::Add('/logout', [$account, 'logout']);
-            Route::Add('/tv', [$formation, 'tv']);
+            Route::Add('/logout', [$account, 'logout']);;
         }
     }
 }
