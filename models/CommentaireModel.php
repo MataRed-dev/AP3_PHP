@@ -17,7 +17,7 @@ class CommentaireModel extends SQL
         return 1;
     }
 
-    public function getComm($idforma)
+    public function getComm($idForma)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM commentaire WHERE idFormation = ?");
         $stmt->execuete([$idforma]);
