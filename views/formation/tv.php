@@ -29,9 +29,21 @@
             }
             ?>
         </div>
-        <div class="card card-dark mt-5 p-3">
-            <
-        </div>
+        <?php
+        foreach($commentaires as $commentaire){
+        ?>
+            <div class="card card-dark mt-5 p-3">
+                <div class="text-light"><?= $commentaire['texteComm']; ?></div>
+            </div>
+        <?php
+        }
+        ?>
+        <br>
+        <form action="./tv" method="post" class="add">
+            <div class="input-group">
+                <input id="comm" name="comm" type="text" class="form-control" placeholder="Met un commentaire" aria-label="My new idea" aria-describedby="basic-addon1"/>
+            </div>
+        </form>
     </div>
 </div>
 

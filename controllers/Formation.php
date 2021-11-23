@@ -5,6 +5,7 @@ namespace controllers;
 use controllers\base\Web;
 use models\CompetenceModel;
 use models\FormationModel;
+use models\CommentaireModel;
 use utils\SessionHelpers;
 
 /**
@@ -15,11 +16,13 @@ class Formation extends Web
 {
     private $formationModel;
     private $CompetenceModel;
+    private $commentaireModel;
 
     function __construct()
     {
         $this->formationModel = new FormationModel();
         $this->CompetenceModel = new CompetenceModel();
+        $this->commentaireModel = new CommentaireModel();
     }
 
     // Affichage de la page d'accueil avec en fonction si connecté ou non une liste plus complète.
@@ -62,6 +65,7 @@ class Formation extends Web
      */
     function tv($id)
     {
+        $commentaires = [];
         // Récupération de la vidéo par rapport à l'ID demandé
         $video = $this->formationModel->getByVideoId($id);
         if (!$video) {
@@ -75,8 +79,18 @@ class Formation extends Web
 
         // Compétence assocés à la vidéo
         $competences = $this->formationModel->competencesFormation($video["IDFORMATION"]);
+        $commentaires = $this->commentaireModel->getComm($video["IDFORMATION"]);
+
         $this->header();
         include("./views/formation/tv.php");
         $this->footer();
+    }
+
+    function addComm(){
+        if (SessionHelpers::isLogin() && isset($_POST['comm'])){
+            $this->commentaireModel->postComm($_POST['comm'], $video["IDFORMATION"]);
+            $this->redirect("./tv");
+       }
+       $this->redirect("./login");
     }
 }

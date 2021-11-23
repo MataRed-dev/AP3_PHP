@@ -45,7 +45,7 @@ class AccountModel extends SQL
             $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT = ? LIMIT 1");
             $stmt->execute([$mail]);
             $inscrit = $stmt->fetch(\PDO::FETCH_ASSOC);
-            SessionHelpers::login(array("username" => "{$name} {$firstname}", "email" => $email));
+            SessionHelpers::login(array("username" => "{$name} {$firstname}", "email" => $email, "idUt" => $idUt));
             return 1;
         }
 
