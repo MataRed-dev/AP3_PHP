@@ -37,7 +37,11 @@
         foreach($commentaires as $commentaire){
         ?>
             <div class="card card-dark mt-5 p-3">
-                <div class="text-light"><?= $commentaire['texteComm']; ?></div>
+               <div class="text-light">
+                    <?= $commentaire['prenomInscrit']; ?>
+                    <br>  
+                    <?= $commentaire['texteComm']; ?>
+                </div>
             </div>
         <?php
         }
@@ -45,7 +49,10 @@
         <br>
         <form action="/AP3_php/add" method="post" class="add">
             <div class="input-group">
-                <input id="comm" name="comm" type="text" class="form-control" placeholder="Met un commentaire" aria-label="My new idea" aria-describedby="basic-addon1"/>
+            <input name="comm" class="form-control" id="texte" placeholder="Ajouter un commentaire">
+            <input name="id" class="form-control" id="texte" value="<?= $_GET['id']?>" hidden>
+            <input name="idVideo" class="form-control" id="texte" value="<?= $video['IDFORMATION']?>" hidden>
+            <button type="submit" class="btn btn-primary my-2">Envoyer le commentaire</button>
             </div>
         </form>
     </div>

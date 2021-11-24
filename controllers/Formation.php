@@ -87,13 +87,12 @@ class Formation extends Web
     }
 
     function addComm($id){
-        $video = $this->formationModel->getByVideoId($id);
-
-        if (SessionHelpers::isLogin() && isset($_POST['comm'])){
-            $this->commentaireModel->postComm($_POST['comm'], $video["IDFORMATION"]);
-            //_$this->redirect("./tv?id=".$$video['IDENTIFIANTVIDEO']);
-            var_dump($video['IDENTIFIANTVIDEO']);
+        if (SessionHelpers::isLogin()){
+            $this->commentaireModel->postComm($_POST['comm'], $_POST['idVideo']);
+            $this->redirect("./tv?id=".$_POST['id']);
        }
-       //$this->redirect("./login");
+       else{
+            $this->redirect("./login");
+        }
     }
 }

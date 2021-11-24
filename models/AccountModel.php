@@ -33,6 +33,9 @@ class AccountModel extends SQL
 
         
         if ($password == $passwordC && $uppercase && isset($password)){
+            if(!$uppercase || strlen($password) < 8) {
+                return 2;
+            }
             $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
             $stmt = $this->pdo->prepare("INSERT INTO inscrit VALUES (null, ? ,? ,? ,?)");
             $stmt->bindParam(1, $name);
@@ -43,19 +46,15 @@ class AccountModel extends SQL
 
 
             $stmt = $this->pdo->prepare("SELECT * FROM inscrit WHERE EMAILINSCRIT = ? LIMIT 1");
-            $stmt->execute([$mail]);
+            $stmt->execute([$email]);
             $inscrit = $stmt->fetch(\PDO::FETCH_ASSOC);
-            SessionHelpers::login(array("username" => "{$inscrit["NOMINSCRIT"]} {$inscrit["PRENOMINSCRIT"]}", "email" => $inscrit["EMAILINSCRIT"], "idUt" => $inscrit["IDINSCRIT"]));
+            SessionHelpers::login(array("username" => "{$name} {$firstname}", "email" => $email, "idUt" => $inscrit["IDINSCRIT"]));
             return 1;
         }
 
         if(@$inscrit && $inscrit["mail"] == $email){
             return 0;
         }
-
-        if(!$uppercase || strlen($password) < 8) {
-            return 2;
-        } 
         return 4;
     }
 }
