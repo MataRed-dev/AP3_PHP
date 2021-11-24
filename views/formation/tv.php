@@ -29,6 +29,10 @@
             }
             ?>
         </div>
+        <br>
+        <div  style="text-align: center" >
+        <button class="d-lg-inline-block ml-3 btn btn-outline-danger"action=''>Sértifffikation</button>
+        </div>
         <?php
         foreach($commentaires as $commentaire){
         ?>
@@ -39,7 +43,7 @@
         }
         ?>
         <br>
-        <form action="./tv" method="post" class="add">
+        <form action="/AP3_php/add" method="post" class="add">
             <div class="input-group">
                 <input id="comm" name="comm" type="text" class="form-control" placeholder="Met un commentaire" aria-label="My new idea" aria-describedby="basic-addon1"/>
             </div>

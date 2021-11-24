@@ -17,7 +17,7 @@ class CommentaireModel extends SQL
 
         $account = SessionHelpers::getConnected();
         $idinsc = $account['idUt'];
-        $stmt = $this->pdo->prepare("INSERT INTO commentaire VALUES (null, ?, ?, ?, 1");
+        $stmt = $this->pdo->prepare("INSERT INTO commentaire VALUES (null, ?, ?, 2, 1)");
         $stmt->execute([$comm, $idinsc, $idforma]);
         return 1;
     }
