@@ -26,6 +26,13 @@
                                 <?php
                             }
                             ?>
+                            <?php
+                            if ($error === 3) {
+                                ?>
+                                <div class="alert alert-danger">Veuillez renseigner le dernier diplome obtenu.</div>
+                                <?php
+                            }
+                            ?>
                             <form method="POST" action="./register">
                                 <h1 class="h3 mb-3 fw-normal text-light">Inscription</h1>
 
@@ -49,7 +56,17 @@
                                     <input name="Cpwd" type="password" class="form-control" id="floatingInput" placeholder="Conformier Mot de Passe">
                                     <label for="floatingInput">Confirmer Mot de passe</label>
                                 </div>
-
+                                <select name="diplome" class="form-select mt-3" aria-label="Default select example">
+                                    <option selected>Dernier diplome obtenu</option>
+                                    <?php
+                                    foreach($diplomes as $diplome)
+                                    {
+                                        $libDiplome = $diplome['libelleDipome'];
+                                        $idDiplome = $diplome['idDiplome'];
+                                        echo "<option value='$idDiplome'>$libDiplome</option>";
+                                    }
+                                    ?>
+                                </select>
                                 <button class="w-100 mt-5 btn btn-lg btn-primary" type="submit">S'inscire</button>
                             </form>
                         </main>

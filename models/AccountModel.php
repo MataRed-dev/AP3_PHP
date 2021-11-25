@@ -27,21 +27,27 @@ class AccountModel extends SQL
         }
     }
 
-    public function register($name, $firstname, $password, $passwordC, $email)
+    public function getDiplome(){
+        $stmt = $this->pdo->prepare("SELECT * FROM diplome");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function register($name, $firstname, $password, $passwordC, $email, $diplome)
     {
         $uppercase = preg_match('@[A-Za-z0-9]@', $password);
-
         
-        if ($password == $passwordC && $uppercase && isset($password)){
+        if ($password == $passwordC && $uppercase && null !== $diplome){
             if(!$uppercase || strlen($password) < 8) {
                 return 2;
             }
             $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
-            $stmt = $this->pdo->prepare("INSERT INTO inscrit VALUES (null, ? ,? ,? ,?)");
+            $stmt = $this->pdo->prepare("INSERT INTO inscrit VALUES (null, ? ,? ,? , ?, ?)");
             $stmt->bindParam(1, $name);
             $stmt->bindParam(2, $firstname);
             $stmt->bindParam(3, $email);    
             $stmt->bindParam(4, $password);
+            $stmt->bindParam(5, $diplome);
             $stmt->execute();
 
 
@@ -52,9 +58,14 @@ class AccountModel extends SQL
             return 1;
         }
 
+        if(null !== $diplome){
+            return 3;
+        }
+
         if(@$inscrit && $inscrit["mail"] == $email){
             return 0;
         }
         return 4;
+        
     }
 }
