@@ -86,7 +86,7 @@ class Formation extends Web
         $this->footer();
     }
 
-    function addComm($id){
+    function addComm(){
         if (SessionHelpers::isLogin()){
             $this->commentaireModel->postComm($_POST['comm'], $_POST['idVideo']);
             $this->redirect("./tv?id=".$_POST['id']);
@@ -94,5 +94,22 @@ class Formation extends Web
        else{
             $this->redirect("./login");
         }
+    }
+
+    function addCertif()
+    {
+        if (SessionHelpers::isLogin()){
+            $this->formationModel->addCertif($_POST['idVideo']);
+            $this->redirect("./Certif");
+        }
+        else{
+            $this->redirect("./login");
+        }
+    }
+
+    function Certif(){
+        $this->header();
+        include("./PDF_PHP/index.php");
+        $this->footer();
     }
 }

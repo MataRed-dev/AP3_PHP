@@ -31,7 +31,11 @@
         </div>
         <br>
         <div  style="text-align: center" >
-        <button class="d-lg-inline-block ml-3 btn btn-outline-danger"action=''>Sértifffikation</button>
+        <form action="/AP3_php/addCertif" method="post" class="add">
+            <input name="id" class="form-control" id="texte" value="<?= $_GET['id']?>" hidden>
+            <input name="idVideo" class="form-control" id="texte" value="<?= $video['IDFORMATION']?>" hidden>
+            <button class="d-lg-inline-block ml-3 btn btn-outline-danger"action=''>Certification</button>
+        </form>
         </div>
         <?php
         foreach($commentaires as $commentaire){

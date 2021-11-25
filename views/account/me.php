@@ -4,7 +4,6 @@ use utils\Gravatar;
 use utils\SessionHelpers;
 
 $account = SessionHelpers::getConnected();
-var_dump($account);
 ?>
 <div class="container mt-5">
     <div class="row">

@@ -3,6 +3,7 @@
 namespace models;
 
 use models\base\SQL;
+use utils\SessionHelpers;
 
 class FormationModel extends SQL
 {
@@ -37,6 +38,15 @@ class FormationModel extends SQL
         $stmt = $this->pdo->prepare("SELECT * FROM competence LEFT JOIN developper d on competence.IDCOMPETENCE = d.IDCOMPETENCE WHERE d.IDFORMATION = ?");
         $stmt->execute([$id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    function addCertif($idForma)
+    {
+        $account = SessionHelpers::getConnected();
+        $idinsc = $account['idUt'];
+        $date = date("Y-m-d");
+        $stmt = $this->pdo->prepare("INSERT INTO certification VALUES (?, ?, 1, ?)");
+        $stmt->execute([ $idinsc, $idForma, $date]);
     }
 }
 ?>
