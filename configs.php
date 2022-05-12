@@ -1,9 +1,9 @@
 <?php
 
-$DB_SERVER = getenv("MVC_SERVER") ?: "192.168.139.1";
-$DB_DATABASE = getenv("MVC_DB") ?: "bgs-corp";
-$DB_USER = getenv("MVC_USER") ?: "bgs-corp-1";
-$DB_PASSWORD = getenv("MVC_TOKEN") ?: "NDkm5pBn";
+$DB_SERVER = getenv("MVC_SERVER") ?: "192.168.48.12";
+$DB_DATABASE = getenv("MVC_DB") ?: "Formaflix";
+$DB_USER = getenv("MVC_USER") ?: "prof";
+$DB_PASSWORD = getenv("MVC_TOKEN") ?: "azerty";
 $DEBUG = getenv("MVC_DEBUG") ?: true;
 
 return array(
